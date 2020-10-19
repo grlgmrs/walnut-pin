@@ -1,0 +1,76 @@
+.sidebar {
+  --arrow-animation-duration: 0.75s;
+  --text-animation-duration: calc(2 * var(--arrow-animation-duration));
+  --animation-type: cubic-bezier(0.67, 1.3, 0.72, 0);
+
+  width: 100%;
+  height: 100px;
+
+  padding: 10px 50px;
+
+  background: #373a40;
+}
+
+.sidebar .rounds-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.sidebar .rounds-container.overflowed {
+  justify-content: flex-start;
+}
+
+.sidebar .rounds-container .number-arrow {
+  display: flex;
+}
+
+.sidebar .rounds-container .number-arrow .number {
+  margin: 0 10px;
+
+  animation: adeddedText var(--text-animation-duration) var(--animation-type);
+}
+
+.sidebar .rounds-container .number-arrow:nth-last-child(1) .arrow {
+  display: none;
+}
+
+.sidebar .rounds-container .number-arrow .arrow.left {
+  transform: scale(1) rotate(180deg);
+  animation: adeddedArrowLeft var(--arrow-animation-duration) var(--animation-type);
+}
+
+.sidebar .rounds-container .number-arrow .arrow:not(.left) {
+  transform: scale(1);
+  animation: adeddedArrow var(--arrow-animation-duration) var(--animation-type);
+}
+
+@keyframes adeddedText {
+  from {
+    transform: scale(0);
+    color: #686d76;
+  }
+  50% {
+    transform: scale(0);
+    color: #686d76;
+  }
+}
+
+@keyframes adeddedArrow {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes adeddedArrowLeft {
+  from {
+    transform: scale(0) rotate(180deg);
+  }
+}

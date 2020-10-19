@@ -4,9 +4,26 @@
   box-sizing: border-box;
 }
 
+.scroll-style {
+  scrollbar-width: thin;
+  scrollbar-color: #686d76 #373a40;
+}
+
+.scroll-style::-webkit-scrollbar {
+  background-color: #373a40;
+  height: 6px;
+}
+
+.scroll-style::-webkit-scrollbar-thumb {
+  background-color: #686d76;
+  border-radius: 3px;
+}
+
 body,
 input,
 button,
 textarea {
   font-family: "Roboto", sans-serif;
+
+  color: #eeeeee;
 }
