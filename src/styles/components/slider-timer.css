@@ -1,0 +1,22 @@
+.slider-timer {
+  width: 100%;
+  max-width: 100vw;
+  height: 5px;
+
+  position: relative;
+
+  background: #686d76;
+}
+
+.slider-timer .current-time {
+  height: 100%;
+  background: #19d3da;
+
+  transition-property: width;
+  transition-timing-function: linear;
+}
+
+.slider-timer .current-time.time-is-over {
+  background: red;
+  width: 100% !important;
+}

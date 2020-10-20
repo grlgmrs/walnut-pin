@@ -1,7 +1,7 @@
 .sidebar {
   --arrow-animation-duration: 0.75s;
   --text-animation-duration: calc(2 * var(--arrow-animation-duration));
-  --animation-type: cubic-bezier(0.67, 1.3, 0.72, 0);
+  --animation-type: ease-out;
 
   width: 100%;
   height: 100px;
@@ -36,6 +36,10 @@
   margin: 0 10px;
 
   animation: adeddedText var(--text-animation-duration) var(--animation-type);
+}
+
+.sidebar .rounds-container .number-arrow:first-child .number {
+  animation-duration: calc(var(--arrow-animation-duration) / 2);
 }
 
 .sidebar .rounds-container .number-arrow:nth-last-child(1) .arrow {
