@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
-import { Round } from "../contracts/Round";
+import { Turn } from "../contracts/Turn";
 
 import "../styles/components/sidebar.css";
 import Arrow from "../utils/Arrow";
 
-export default function Sidebar({ items }: { items: Round[] }) {
+interface SidebarProps {
+  items: Turn[];
+  className?: string;
+}
+
+export default function Sidebar(props: SidebarProps) {
   const size = "24px";
   let flipped = false;
 
@@ -25,9 +30,9 @@ export default function Sidebar({ items }: { items: Round[] }) {
   });
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${props.className}`}>
       <div className="rounds-container scroll-style">
-        {items.map((item, index) => {
+        {props.items.map((item, index) => {
           if (item === "PIN") flipped = !flipped;
 
           return (

@@ -1,0 +1,95 @@
+.bubble-message {
+  --loader-animation-duration: 0.75s;
+
+  position: relative;
+
+  height: 115px;
+  width: 230px;
+
+  background: #373a40;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+
+  font-size: 2.5rem;
+  font-weight: 700;
+
+  opacity: 0.7;
+
+  transition: opacity 0.15s linear;
+}
+
+.bubble-message:before {
+  content: "";
+  position: absolute;
+
+  top: -28px;
+  right: 30px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid #373a40;
+}
+
+.bubble-message.active {
+  opacity: 1;
+}
+
+.bubble-message.active .loader {
+  position: relative;
+
+  height: 100%;
+  width: 100%;
+}
+
+.bubble-message.active .loader > * {
+  position: absolute;
+  display: block;
+
+  height: 15px;
+  width: 15px;
+
+  border-radius: 15px;
+  background-color: #eeeeee;
+}
+
+.bubble-message.active .loader > * {
+  top: calc(50% - 7.5px);
+
+  animation: loader var(--loader-animation-duration) linear infinite;
+}
+
+.bubble-message.active .loader > :nth-child(1) {
+  left: calc(50% - 7.5px - 30px);
+}
+
+.bubble-message.active .loader > :nth-child(2) {
+  left: calc(50% - 7.5px);
+  animation-delay: calc(var(--loader-animation-duration) * 0.3);
+}
+
+.bubble-message.active .loader > :nth-child(3) {
+  left: calc(50% - 7.5px + 30px);
+  animation-delay: calc(var(--loader-animation-duration) * 0.6);
+}
+
+@keyframes loader {
+  from {
+    top: calc(50% - 7.5px);
+  }
+  33% {
+    top: calc(50% - 7.5px + 7.5px);
+  }
+  66% {
+    top: calc(50% - 7.5px - 7.5px);
+  }
+  100% {
+    top: calc(50% - 7.5px);
+  }
+}

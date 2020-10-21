@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import "../styles/components/slider-timer.css";
+import "../styles/utils/progression-timer.css";
 
 interface ProgressionTimerProps {
-  start: boolean;
+  timeIsOver: boolean;
   duration: number;
   onTimeIsOver: Function;
-  onStart?: Function;
+  className?: string;
 }
 
 export default function ProgressionTimer(props: ProgressionTimerProps) {
@@ -16,8 +16,8 @@ export default function ProgressionTimer(props: ProgressionTimerProps) {
   const [intervalTimeout, setIntervalTimeout] = useState<NodeJS.Timeout>();
 
   useEffect(() => {
-    if (props.start) {
-      document.querySelector(".current-time")?.classList.remove("time-is-over");
+    if (!props.timeIsOver) {
+      document.querySelector(".current-time")?.classList.remove("game-over");
 
       setIntervalTimeout(
         setInterval(() => {
@@ -26,7 +26,11 @@ export default function ProgressionTimer(props: ProgressionTimerProps) {
       );
 
       setCurrentTime(fullTime);
+    } else {
+      document.querySelector(".current-time")?.classList.add("game-over");
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   useEffect(() => {
@@ -36,9 +40,11 @@ export default function ProgressionTimer(props: ProgressionTimerProps) {
       clearInterval(timeOutToID(intervalTimeout));
 
       props.onTimeIsOver();
-      document.querySelector(".current-time")?.classList.add("time-is-over");
+      document.querySelector(".current-time")?.classList.add("game-over");
     }
-  }, [currentTime]!);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTime]);
 
   // On components re render, remove the current setInterval
   useEffect(() => {
@@ -50,7 +56,7 @@ export default function ProgressionTimer(props: ProgressionTimerProps) {
   }
 
   return (
-    <div className="slider-timer">
+    <div className={`progression-timer ${props.className}`}>
       <div
         className="current-time"
         style={{

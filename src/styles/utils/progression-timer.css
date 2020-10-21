@@ -1,4 +1,4 @@
-.slider-timer {
+.progression-timer {
   width: 100%;
   max-width: 100vw;
   height: 5px;
@@ -8,7 +8,7 @@
   background: #686d76;
 }
 
-.slider-timer .current-time {
+.progression-timer .current-time {
   height: 100%;
   background: #19d3da;
 
@@ -16,7 +16,9 @@
   transition-timing-function: linear;
 }
 
-.slider-timer .current-time.time-is-over {
-  background: red;
+.progression-timer .current-time.game-over {
+  transition: none;
+
+  background: lightcoral;
   width: 100% !important;
 }

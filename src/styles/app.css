@@ -1,9 +1,42 @@
 #game {
-  width: 100%;
-  height: 100%;
-
-  max-width: 100vw;
-  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
   background: #eeeeee;
+}
+
+#game .top-area {
+  position: relative;
+}
+
+#game .top-area .top-area-sidebar {
+  position: absolute;
+
+  min-height: 55px;
+  height: 10vh;
+}
+
+#game .top-area .progression-timer-sidebar {
+  position: absolute;
+  top: max(55px, 10vh);
+}
+
+#game .controls-container {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #eeeeee;
+}
+
+#game .controls-container > :nth-child(1),
+#game .controls-container > :nth-child(2) {
+  margin-bottom: 75px;
+}
+
+#game .controls-container > :nth-child(3) {
+  margin-bottom: 25px;
 }

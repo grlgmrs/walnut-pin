@@ -1,0 +1,82 @@
+.round-direction {
+  --animation-duration: 0.6s;
+
+  height: 31px;
+  width: 160px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.round-direction {
+  filter: drop-shadow(0px 4px 8px rgba(104, 109, 118, 0.25));
+}
+
+.round-direction.right {
+  animation: widthContainer2 var(--animation-duration);
+}
+
+.round-direction.left {
+  animation: widthContainer var(--animation-duration);
+}
+
+.round-direction .round-direction-arrow {
+  position: absolute;
+}
+
+.round-direction .round-direction-arrow:nth-child(1) {
+  left: 0px;
+}
+
+.round-direction .round-direction-arrow:nth-child(3) {
+  right: 0px;
+}
+
+.round-direction.right .round-direction-arrow {
+  animation: arrowRight var(--animation-duration);
+}
+
+.round-direction.left .round-direction-arrow {
+  transform: rotate(180deg);
+
+  animation: arrowLeft var(--animation-duration);
+}
+
+@keyframes widthContainer {
+  from {
+    width: 160px;
+  }
+  50% {
+    width: 28px;
+  }
+}
+
+@keyframes widthContainer2 {
+  from {
+    width: 160px;
+  }
+  50% {
+    width: 28px;
+  }
+}
+
+@keyframes arrowRight {
+  from {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes arrowLeft {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
