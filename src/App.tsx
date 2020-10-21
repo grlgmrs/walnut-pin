@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import BubbleMessage from "./components/BubbleMessage";
 import GameButton from "./components/GameButton";
+import Modal from "./components/Modal";
 
 import ProgressionTimer from "./utils/ProgressionTimer";
 import RoundDirectionArrows from "./utils/RoundDirectionArrows";
@@ -12,8 +13,24 @@ import { Turn, PlayerTurn, RoundDirection } from "./contracts/Turn";
 import "./styles/global.css";
 import "./styles/app.css";
 
+import winSvg from "./assets/undraw_win.svg";
+import loseSvg from "./assets/undraw_lose.svg";
+
 function App() {
   const durationTurn = 2;
+  const finishGameStyle = {
+    win: {
+      title: "Você ganhou!",
+      image: winSvg,
+      description: (r: number) =>
+        `Parabéns, você derrotou o oponente Computador 1 no ${r}º round!`,
+    },
+    lose: {
+      title: "Poxa! Você perdeu...",
+      image: loseSvg,
+      description: (r: number) => `Você perdeu no ${r}º round...`,
+    },
+  };
 
   const [currentRound, setCurrentRound] = useState<number>(0);
   const [rounds, setRounds] = useState<Turn[]>([]);
@@ -34,13 +51,6 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPlayerTurn]);
-
-  useEffect(() => {
-    if (isGameOver) {
-      onGameOver();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGameOver]);
 
   function getTurnsCorrectChoice(): Turn {
     const roundNumber = currentRound + 1;
@@ -104,9 +114,12 @@ function App() {
     setCurrentPlayerTurn(chooseNextPlayer());
   }
 
-  function onGameOver() {
-    console.log(currentPlayerTurn, " looses");
-    console.log(isGameOver);
+  function handlePlayAgain() {
+    console.log("teste");
+
+    setRounds([]);
+    setCurrentRound(0);
+    setIsGameOver(false);
   }
 
   return (
@@ -148,6 +161,17 @@ function App() {
           disabled={currentPlayerTurn !== "user"}
         />
       </div>
+
+      {isGameOver && (
+        <Modal
+          title={finishGameStyle[currentPlayerTurn === "user" ? "lose" : "win"].title}
+          description={finishGameStyle[
+            currentPlayerTurn === "user" ? "lose" : "win"
+          ].description(currentRound + 1)}
+          image={finishGameStyle[currentPlayerTurn === "user" ? "lose" : "win"].image}
+          onClick={handlePlayAgain}
+        />
+      )}
     </div>
   );
 }
